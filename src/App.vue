@@ -1,8 +1,8 @@
 <template>
     <div class="container">
-        <my-header></my-header>
+        <my-header :quoteCount="quotes.length" :maxQuotes="maxQuotes"></my-header>
         <my-new-quote @quoteAdded="addNewQuote"></my-new-quote>
-        <my-quotes :quotes="quotes"></my-quotes>
+        <my-quotes :quotes="quotes" @quoteDeleted="deleteQuote"></my-quotes>
     </div>
 </template>
 
@@ -20,7 +20,18 @@
         },
         methods: {
             addNewQuote(quote) {
-                this.quotes.push(quote);
+                if(quote.length > 0) {
+                    if(this.quotes.length < 10) {
+                        this.quotes.push(quote); //Inserisco frase
+                    } else {
+                        alert("Hai raggiunto il numero massimo di frasi, Clicca su una frase per eliminarla")
+                    }
+                } else {
+                    alert("Non hai scritto nulla, riprova")
+                }
+            },
+            deleteQuote(index) {
+                this.quotes.splice(index,1); //Elimino frase a click
             }
         },
         components: {

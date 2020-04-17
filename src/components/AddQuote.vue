@@ -18,7 +18,7 @@ export default {
     },
     methods: {
         newQuote() {
-            this.$emit('quoteAdded', this.quote)
+            this.$emit('quoteAdded', this.quote) //Invio frase ad app.vue
             this.quote = ''; //Svuoto text area
         }
     }
