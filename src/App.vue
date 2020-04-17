@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <my-header></my-header>
-        <my-quote></my-quote>
-        <my-quotes></my-quotes>
+        <my-new-quote @quoteAdded="addNewQuote"></my-new-quote>
+        <my-quotes :quotes="quotes"></my-quotes>
     </div>
 </template>
 
@@ -12,9 +12,20 @@
     import Quotes from './components/Quotes.vue';
 
     export default {
+        data: function() {
+            return {
+                quotes: [],
+                maxQuotes: 10,
+            }
+        },
+        methods: {
+            addNewQuote(quote) {
+                this.quotes.push(quote);
+            }
+        },
         components: {
             myHeader: Header,
-            myQuote: addQuote,
+            myNewQuote: addQuote,
             myQuotes: Quotes,
         }
     }

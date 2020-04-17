@@ -1,9 +1,11 @@
 <template>
     <div class="text-center">
         <h2>Quote</h2>
-        <textarea v-model="quote" placeholder="Insert a quote" rows="4" cols="50"></textarea>
-        <br>
-        <button @click="addQuoteToArray()" class="btn btn-primary">Add Quote</button>
+        <form>
+            <textarea v-model="quote" placeholder="Insert a quote" rows="4" cols="50"></textarea>
+            <br>
+            <button @click.prevent="newQuote()" class="btn btn-primary">Add Quote</button>
+        </form>
     </div>
 </template>
 
@@ -12,14 +14,12 @@ export default {
     data: function() {
         return {
             quote: '',
-            quotes: [],
         }
     },
     methods: {
-        addQuoteToArray() {
-            this.quotes.push(this.quote); //Inserisco quote in array
+        newQuote() {
+            this.$emit('quoteAdded', this.quote)
             this.quote = ''; //Svuoto text area
-            console.log(this.quotes);
         }
     }
 }

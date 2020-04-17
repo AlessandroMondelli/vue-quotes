@@ -28,7 +28,7 @@ export default {
 
     #inner-bar {
         transition: 0.3s;
-        width: 10%;
+        width: 0%;
         height: 28px;
         background-color: #0069D9
     }
